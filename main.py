@@ -14,7 +14,7 @@ app = FastAPI(
     title="Linked In"
 )
 
-api_bridge = APIBridge(db_config)
+api_bridge = APIBridge(db_config,base_endpoint="/linked-in-apis")
 app.include_router(api_bridge.router)
 
 # Run the app
