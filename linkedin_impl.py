@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-from connection import get_db_connection
-from router import ApiBridgeRouter
+from api_bridge import APIBridge
 
 # Single database configuration
 db_config = {
@@ -14,10 +13,9 @@ db_config = {
 app = FastAPI(
     title="Linked In"
 )
-engine = get_db_connection(**db_config)
 
-api_bridge = ApiBridgeRouter(engine, prefix="/linked-in")
-app.include_router(api_bridge.get_router())
+api_bridge = APIBridge(db_config)
+app.include_router(api_bridge.router)
 
 # Run the app
 # uvicorn main:app --reload
