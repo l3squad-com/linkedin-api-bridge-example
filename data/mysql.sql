@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS user (
 );
 
 -- Table: user_post
-CREATE TABLE IF NOT EXISTS user_post (
+CREATE TABLE IF NOT EXISTS post (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
     content TEXT NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS user_post (
 );
 
 -- Table: post_like
-CREATE TABLE IF NOT EXISTS post_like (
+CREATE TABLE IF NOT EXISTS react (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
     post_id BIGINT NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS post_like (
 );
 
 -- Table: post_comment
-CREATE TABLE IF NOT EXISTS post_comment (
+CREATE TABLE IF NOT EXISTS comment (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
     post_id BIGINT NOT NULL,
@@ -71,19 +71,19 @@ INSERT INTO user (full_name, email, profile_image) VALUES
 ('Alice Johnson', 'alice.johnson@example.com', 'alice_profile.jpg');
 
 -- Insert Dummy User Posts
-INSERT INTO user_post (user_id, content, media_url, visibility) VALUES
+INSERT INTO post (user_id, content, media_url, visibility) VALUES
 (1, 'Excited to start my new job at TechCorp!', 'post1.jpg', 'public'),
 (2, 'Just attended an amazing AI conference!', 'post2.jpg', 'connections'),
 (3, 'My latest blog post on cloud computing is live!', NULL, 'public');
 
 -- Insert Dummy Post Likes
-INSERT INTO post_like (user_id, post_id) VALUES
+INSERT INTO react (user_id, post_id) VALUES
 (1, 2),
 (2, 3),
 (3, 1);
 
 -- Insert Dummy Post Comments
-INSERT INTO post_comment (user_id, post_id, comment_text) VALUES
+INSERT INTO comment (user_id, post_id, comment_text) VALUES
 (2, 1, 'Congratulations, John! Best of luck!'),
 (3, 2, 'AI conferences are always insightful. What was your biggest takeaway?'),
 (1, 3, 'Great article on cloud computing, Alice!');
